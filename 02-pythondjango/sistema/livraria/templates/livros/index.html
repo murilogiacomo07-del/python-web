@@ -1,6 +1,6 @@
 {% extends "base.html" %}
  
-{% block title %} Lista de livros {% endblock%}
+{% block title %} Lista de Livros {% endblock %}
  
 {% block conteudo %}
 <div class="card">
@@ -9,12 +9,13 @@
             name=""
             id=""
             class="btn btn-success"
-            href="{% url 'criar'%}"
+            href="{% url 'criar' %}"
             role="button"
             >Adicionar novo livro</a
         >
-        
+       
     </div>
+   
     <div class="card-body">
         <h4 class="card-title">Livros</h4>
         <div
@@ -33,25 +34,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for livro in livros %}
                     <tr>
-                        <td>1</td>
-                        <td>Framewo rk Django para Iniciantes</td>
-                        <td>imagem.jpg</td>
-                        <td>o Framework Django para iniciantes tem com objetivo ensinar...</td>
+                        <td>{{ livro.id }}</td>
+                        <td>{{ livro.titulo }}</td>
                         <td>
-                            
+                            <img src= "{{ livro.imagem.url }}"height="100"/> </td>
+                        
+                        <td>{{ livro.descricao }}</td>
+                        <td>
                             <a
                                 name=""
                                 id=""
                                 class="btn btn-info"
-                                href="{% url 'alterar' %}"
+                                href=" {% url 'alterar' %}"
                                 role="button"
                                 >Alterar</a
                             >
-                            
-
-
-
+                             
+                                                        |
+                           
                             <a
                                 name=""
                                 id=""
@@ -60,21 +62,20 @@
                                 role="button"
                                 >Excluir</a
                             >
-                            
-                            
-                            
-                            
-                            Excluir</td>
+                           
+                       
+                        </td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
        
- 
        
     </div>
     <div class="card-footer text-body-secondary"></div>
 </div>
  
-
+ 
 {% endblock %}
+ 

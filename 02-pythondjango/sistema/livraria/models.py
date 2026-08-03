@@ -6,4 +6,12 @@ class Livro(models.Model):
     titulo = models.CharField(max_length=100, verbose_name="Titulo")
     imagem = models.ImageField(upload_to='imagens/', verbose_name="Imagem", null=True)
     descricao = models.TextField(verbose_name="descrição", null=True)
- 
+
+
+    def __str__(self):
+        dados = "Título: " + self.titulo + "-" + "Descrição" + self.descricao
+        return dados
+
+    def delete(self, using=None, keep_parents=False):
+        self.imagem.storage.delete(self.imagem.name)
+        super().delete()

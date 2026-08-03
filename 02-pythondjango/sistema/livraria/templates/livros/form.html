@@ -1,16 +1,27 @@
 <form encctype = "multipart/form-data" method="post">
-    <div class="mb-3">
-        <label for="" class="form-label">Name</label>
-        <input
-            type="text"
-            class="form-control"
-            name=""
-            id=""
-            aria-describedby="helpId"
-            placeholder="Nome"
-        />
+    {% csrf_token %}
 
-    </div>
-    
-    </form
-    
+    {% for campo in formulario %}
+<div class="mb-3">
+    <label for="" class="form-label">{{ campo.label }}</label>
+    <input
+        type="{{ campo.field.widget.input_type}}"
+         class="form-control"
+         name="{{ campo.name }}"
+        id=""
+         aria-describedby="helpId"
+         placeholder="{{ campo.label }}"
+    />
+
+</div>
+
+{% if campo.errors %}
+<div class="col-12help-text" style="color: red;">
+    Campo obrigatório.
+</div>
+{% endif %}
+
+{% endfor %}
+
+<input name="" id="" class="btn btn-success" type="submit" value="Cadastrar"/>
+</form>
